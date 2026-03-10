@@ -1,251 +1,251 @@
-	.file	"HexDump.c"
-	.text
-	.section	.rodata
-.LC1:
-	.string	"  "
-.LC2:
-	.string	"   "
-.LC3:
-	.string	"  |"
-.LC4:
-	.string	"|"
-.LC0:
-	.string	"0123456789abcdef"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB6:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movl	$1, -44(%rbp)
-	movl	$0, -40(%rbp)
-	movl	-44(%rbp), %eax
-	cltq
-	movq	%rax, %rdi
-	call	malloc@PLT
-	movq	%rax, -8(%rbp)
-	cmpq	$0, -8(%rbp)
-	jne	.L4
-	movl	$0, %eax
-	jmp	.L3
-.L6:
-	movl	-40(%rbp), %eax
-	addl	$1, %eax
-	cmpl	%eax, -44(%rbp)
-	jg	.L5
-	addl	$1, -44(%rbp)
-	movl	-44(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	realloc@PLT
-	movq	%rax, -8(%rbp)
-.L5:
-	movl	-40(%rbp), %eax
-	leal	1(%rax), %edx
-	movl	%edx, -40(%rbp)
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movl	-12(%rbp), %edx
-	movb	%dl, (%rax)
-.L4:
-	call	getchar@PLT
-	movl	%eax, -12(%rbp)
-	cmpl	$-1, -12(%rbp)
-	jne	.L6
-	movl	-40(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movb	$0, (%rax)
-	movl	$0, -36(%rbp)
-	jmp	.L7
-.L20:
-	movl	$28, -32(%rbp)
-	jmp	.L8
-.L9:
-	movl	-32(%rbp), %eax
-	movl	-36(%rbp), %edx
-	movl	%eax, %ecx
-	sarl	%cl, %edx
-	movl	%edx, %eax
-	andl	$15, %eax
-	cltq
-	leaq	.LC0(%rip), %rdx
-	movzbl	(%rax,%rdx), %eax
-	movsbl	%al, %eax
-	movl	%eax, %edi
-	call	putchar@PLT
-	subl	$4, -32(%rbp)
-.L8:
-	cmpl	$0, -32(%rbp)
-	jns	.L9
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$0, -28(%rbp)
-	jmp	.L10
-.L15:
-	movl	$0, -24(%rbp)
-	jmp	.L11
-.L14:
-	movl	-36(%rbp), %edx
-	movl	-24(%rbp), %eax
-	addl	%eax, %edx
-	movl	-28(%rbp), %eax
-	addl	%edx, %eax
-	cmpl	%eax, -40(%rbp)
-	jle	.L12
-	movl	-36(%rbp), %edx
-	movl	-24(%rbp), %eax
-	addl	%eax, %edx
-	movl	-28(%rbp), %eax
-	addl	%edx, %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	shrb	$4, %al
-	movzbl	%al, %eax
-	cltq
-	leaq	.LC0(%rip), %rdx
-	movzbl	(%rax,%rdx), %eax
-	movsbl	%al, %eax
-	movl	%eax, %edi
-	call	putchar@PLT
-	movl	-36(%rbp), %edx
-	movl	-24(%rbp), %eax
-	addl	%eax, %edx
-	movl	-28(%rbp), %eax
-	addl	%edx, %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	movzbl	%al, %eax
-	andl	$15, %eax
-	cltq
-	leaq	.LC0(%rip), %rdx
-	movzbl	(%rax,%rdx), %eax
-	movsbl	%al, %eax
-	movl	%eax, %edi
-	call	putchar@PLT
-	movl	$32, %edi
-	call	putchar@PLT
-	jmp	.L13
-.L12:
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-.L13:
-	addl	$1, -24(%rbp)
-.L11:
-	cmpl	$7, -24(%rbp)
-	jle	.L14
-	movl	$32, %edi
-	call	putchar@PLT
-	addl	$8, -28(%rbp)
-.L10:
-	cmpl	$8, -28(%rbp)
-	jle	.L15
-	leaq	.LC3(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$0, -20(%rbp)
-	jmp	.L16
-.L19:
-	movl	-36(%rbp), %edx
-	movl	-20(%rbp), %eax
-	addl	%edx, %eax
-	cmpl	%eax, -40(%rbp)
-	jle	.L17
-	movl	-36(%rbp), %edx
-	movl	-20(%rbp), %eax
-	addl	%edx, %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	cmpb	$31, %al
-	jbe	.L18
-	movl	-36(%rbp), %edx
-	movl	-20(%rbp), %eax
-	addl	%edx, %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	cmpb	$126, %al
-	ja	.L18
-	movl	-36(%rbp), %edx
-	movl	-20(%rbp), %eax
-	addl	%edx, %eax
-	movslq	%eax, %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
-	movzbl	(%rax), %eax
-	movzbl	%al, %eax
-	movl	%eax, %edi
-	call	putchar@PLT
-	jmp	.L17
-.L18:
-	movl	$46, %edi
-	call	putchar@PLT
-.L17:
-	addl	$1, -20(%rbp)
-.L16:
-	cmpl	$15, -20(%rbp)
-	jle	.L19
-	leaq	.LC4(%rip), %rax
-	movq	%rax, %rdi
-	call	puts@PLT
-	addl	$16, -36(%rbp)
-.L7:
-	movl	-36(%rbp), %eax
-	cmpl	-40(%rbp), %eax
-	jl	.L20
-	movl	$28, -16(%rbp)
-	jmp	.L21
-.L22:
-	movl	-16(%rbp), %eax
-	movl	-40(%rbp), %edx
-	movl	%eax, %ecx
-	sarl	%cl, %edx
-	movl	%edx, %eax
-	andl	$15, %eax
-	cltq
-	leaq	.LC0(%rip), %rdx
-	movzbl	(%rax,%rdx), %eax
-	movsbl	%al, %eax
-	movl	%eax, %edi
-	call	putchar@PLT
-	subl	$4, -16(%rbp)
-.L21:
-	cmpl	$0, -16(%rbp)
-	jns	.L22
-	movl	$10, %edi
-	call	putchar@PLT
-	movq	-8(%rbp), %rax
-	movq	%rax, %rdi
-	call	free@PLT
-	movl	$0, %eax
-.L3:
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE6:
-	.size	main, .-main
-	.ident	"GCC: (GNU) 15.2.1 20260209"
-	.section	.note.GNU-stack,"",@progbits
+	.file	"HexDump.c"                          ; имя исходного файла
+	.text                                        ; начало секции с кодом
+	.section	.rodata                          ; секция с постоянными строками (только чтение)
+.LC1:                                            ; метка строки "два пробела"
+	.string	"  "                                 ; два пробела — между адресом и hex-кодами
+.LC2:                                            ; метка строки "три пробела"
+	.string	"   "                                ; три пробела — когда байта нет, чтобы колонки не съехали
+.LC3:                                            ; метка строки "  |"
+	.string	"  |"                                ; открывает правую часть дампа
+.LC4:                                            ; метка строки "|"
+	.string	"|"                                  ; закрывает правую часть дампа
+.LC0:                                            ; метка главного алфавита
+	.string	"0123456789abcdef"                   ; алфавит hex — берём символ по индексу 0-15
+	.text                                        ; снова секция кода
+	.globl	main                                 ; main видна снаружи — система найдёт её при запуске
+	.type	main, @function                      ; main это функция
+main:                                            ; начало функции main
+.LFB6:                                           ; служебная метка компилятора
+	.cfi_startproc                               ; служебная — для отладчика
+	pushq	%rbp                                 ; сохраняем адрес возврата на стек
+	.cfi_def_cfa_offset 16                       ; служебная — для отладчика
+	.cfi_offset 6, -16                           ; служебная — для отладчика
+	movq	%rsp, %rbp                           ; запоминаем вершину стека — рабочий стол для переменных
+	.cfi_def_cfa_register 6                      ; служебная — для отладчика
+	subq	$48, %rsp                            ; резервируем 48 байт под все переменные программы
+	movl	$1, -44(%rbp)                        ; capacity = 1 — начальный размер буфера
+	movl	$0, -40(%rbp)                        ; size = 0 — ещё ничего не прочитано
+	movl	-44(%rbp), %eax                      ; берём capacity в регистр — готовим для malloc
+	cltq                                         ; расширяем до 64 бит — malloc требует 64-битный размер
+	movq	%rax, %rdi                           ; кладём размер в rdi — первый аргумент malloc
+	call	malloc@PLT                           ; вызываем malloc — просим у системы 1 байт памяти
+	movq	%rax, -8(%rbp)                       ; сохраняем адрес полученной памяти в str
+	cmpq	$0, -8(%rbp)                         ; malloc вернул 0? (система отказала в памяти)
+	jne	.L4                                  ; если не 0 — память есть, идём дальше
+	movl	$0, %eax                             ; если 0 — готовим код возврата 0
+	jmp	.L3                                  ; прыгаем в конец — выходим из программы
+.L6:                                             ; сюда прыгаем чтобы сохранить байт
+	movl	-40(%rbp), %eax                      ; берём size
+	addl	$1, %eax                             ; считаем size + 1
+	cmpl	%eax, -44(%rbp)                      ; capacity > size+1? (есть ли место?)
+	jg	.L5                                  ; если место есть — пропускаем расширение
+	addl	$1, -44(%rbp)                        ; места нет — увеличиваем capacity на 1
+	movl	-44(%rbp), %eax                      ; берём новый capacity
+	movslq	%eax, %rdx                           ; расширяем до 64 бит для realloc
+	movq	-8(%rbp), %rax                       ; берём старый адрес буфера
+	movq	%rdx, %rsi                           ; новый размер — второй аргумент realloc
+	movq	%rax, %rdi                           ; старый адрес — первый аргумент realloc
+	call	realloc@PLT                          ; расширяем буфер на 1 байт
+	movq	%rax, -8(%rbp)                       ; сохраняем новый адрес (realloc мог переместить буфер)
+.L5:                                             ; сюда попадаем когда место в буфере есть
+	movl	-40(%rbp), %eax                      ; берём size — индекс куда писать
+	leal	1(%rax), %edx                        ; считаем size + 1 — новый size
+	movl	%edx, -40(%rbp)                      ; сохраняем новый size (size++)
+	movslq	%eax, %rdx                           ; расширяем старый size до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес_буфера + индекс = нужная ячейка
+	movl	-12(%rbp), %edx                      ; берём прочитанный байт (ch)
+	movb	%dl, (%rax)                          ; записываем байт в нужную ячейку буфера
+.L4:                                             ; начало цикла чтения
+	call	getchar@PLT                          ; читаем один байт из потока ввода
+	movl	%eax, -12(%rbp)                      ; сохраняем байт в переменную ch
+	cmpl	$-1, -12(%rbp)                       ; ch == -1? (EOF — конец потока)
+	jne	.L6                                  ; не EOF — прыгаем сохранять байт
+	movl	-40(%rbp), %eax                      ; берём size — количество прочитанных байт
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес ячейки после последнего байта
+	movb	$0, (%rax)                           ; записываем 0 — признак конца строки
+	movl	$0, -36(%rbp)                        ; i = 0 — начинаем вывод с начала
+	jmp	.L7                                  ; прыгаем к проверке главного цикла
+.L20:                                            ; начало обработки одной строки из 16 байт
+	movl	$28, -32(%rbp)                       ; bite = 28 — начинаем вывод адреса со старшей цифры
+	jmp	.L8                                  ; прыгаем к проверке условия цикла адреса
+.L9:                                             ; тело цикла — выводим одну hex-цифру адреса
+	movl	-32(%rbp), %eax                      ; берём bite
+	movl	-36(%rbp), %edx                      ; берём i — адрес строки
+	movl	%eax, %ecx                           ; кладём bite в ecx — нужен для сдвига
+	sarl	%cl, %edx                            ; сдвигаем i вправо на bite бит
+	movl	%edx, %eax                           ; копируем результат
+	andl	$15, %eax                            ; берём последние 4 бита — число 0-15
+	cltq                                         ; расширяем до 64 бит — используем как индекс
+	leaq	.LC0(%rip), %rdx                     ; загружаем адрес строки "0123456789abcdef"
+	movzbl	(%rax,%rdx), %eax                    ; берём символ по индексу из алфавита
+	movsbl	%al, %eax                            ; расширяем символ для putchar
+	movl	%eax, %edi                           ; кладём символ в edi — аргумент putchar
+	call	putchar@PLT                          ; выводим одну hex-цифру адреса
+	subl	$4, -32(%rbp)                        ; bite -= 4 — переходим к следующей цифре
+.L8:                                             ; проверка условия цикла адреса
+	cmpl	$0, -32(%rbp)                        ; bite >= 0? (ещё не все 8 цифр?)
+	jns	.L9                                  ; если да — прыгаем выводить следующую цифру
+	leaq	.LC1(%rip), %rax                     ; загружаем "  " (два пробела)
+	movq	%rax, %rdi                           ; аргумент для printf
+	movl	$0, %eax                             ; нет доп. аргументов
+	call	printf@PLT                           ; выводим два пробела после адреса
+	movl	$0, -28(%rbp)                        ; d = 0 — начинаем с первой группы байт
+	jmp	.L10                                 ; прыгаем к проверке внешнего цикла
+.L15:                                            ; начало одной группы из 8 байт
+	movl	$0, -24(%rbp)                        ; j = 0 — первый байт в группе
+	jmp	.L11                                 ; прыгаем к проверке внутреннего цикла
+.L14:                                            ; обработка одного байта
+	movl	-36(%rbp), %edx                      ; берём i
+	movl	-24(%rbp), %eax                      ; берём j
+	addl	%eax, %edx                           ; i + j
+	movl	-28(%rbp), %eax                      ; берём d (смещение группы: 0 или 8)
+	addl	%edx, %eax                           ; i + j + d — полный индекс байта
+	cmpl	%eax, -40(%rbp)                      ; есть ли байт на этой позиции? (индекс < size?)
+	jle	.L12                                 ; нет — прыгаем ставить пробелы
+	movl	-36(%rbp), %edx                      ; берём i снова (вычисляем адрес для чтения)
+	movl	-24(%rbp), %eax                      ; берём j
+	addl	%eax, %edx                           ; i + j
+	movl	-28(%rbp), %eax                      ; берём d
+	addl	%edx, %eax                           ; i + j + d
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес нужного байта
+	movzbl	(%rax), %eax                         ; читаем байт из буфера
+	shrb	$4, %al                              ; сдвиг вправо на 4 — берём левую половину байта
+	movzbl	%al, %eax                            ; расширяем до полного числа
+	cltq                                         ; расширяем до 64 бит — индекс в алфавите
+	leaq	.LC0(%rip), %rdx                     ; загружаем "0123456789abcdef"
+	movzbl	(%rax,%rdx), %eax                    ; берём первую hex-цифру байта
+	movsbl	%al, %eax                            ; расширяем для putchar
+	movl	%eax, %edi                           ; аргумент putchar
+	call	putchar@PLT                          ; выводим первую hex-цифру (например "4" для 0x4f)
+	movl	-36(%rbp), %edx                      ; берём i снова (для второй цифры)
+	movl	-24(%rbp), %eax                      ; берём j
+	addl	%eax, %edx                           ; i + j
+	movl	-28(%rbp), %eax                      ; берём d
+	addl	%edx, %eax                           ; i + j + d
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес байта
+	movzbl	(%rax), %eax                         ; читаем байт снова
+	movzbl	%al, %eax                            ; расширяем
+	andl	$15, %eax                            ; берём правую половину байта (& 0xF)
+	cltq                                         ; расширяем до 64 бит
+	leaq	.LC0(%rip), %rdx                     ; загружаем "0123456789abcdef"
+	movzbl	(%rax,%rdx), %eax                    ; берём вторую hex-цифру байта
+	movsbl	%al, %eax                            ; расширяем для putchar
+	movl	%eax, %edi                           ; аргумент putchar
+	call	putchar@PLT                          ; выводим вторую hex-цифру (например "f" для 0x4f)
+	movl	$32, %edi                            ; 32 — код пробела в ASCII
+	call	putchar@PLT                          ; выводим пробел после байта
+	jmp	.L13                                 ; прыгаем к j++
+.L12:                                            ; сюда прыгаем если байта нет
+	leaq	.LC2(%rip), %rax                     ; загружаем "   " (три пробела)
+	movq	%rax, %rdi                           ; аргумент printf
+	movl	$0, %eax                             ; нет доп. аргументов
+	call	printf@PLT                           ; выводим три пробела вместо байта
+.L13:                                            ; сюда попадаем в любом случае
+	addl	$1, -24(%rbp)                        ; j++ — следующий байт в группе
+.L11:                                            ; проверка условия внутреннего цикла
+	cmpl	$7, -24(%rbp)                        ; j <= 7? (ещё не все 8 байт группы?)
+	jle	.L14                                 ; если да — обрабатываем следующий байт
+	movl	$32, %edi                            ; 32 — код пробела
+	call	putchar@PLT                          ; пробел-разделитель между двумя группами
+	addl	$8, -28(%rbp)                        ; d += 8 — переходим ко второй группе
+.L10:                                            ; проверка условия внешнего цикла
+	cmpl	$8, -28(%rbp)                        ; d <= 8? (ещё не обе группы?)
+	jle	.L15                                 ; если да — обрабатываем следующую группу
+	leaq	.LC3(%rip), %rax                     ; загружаем "  |"
+	movq	%rax, %rdi                           ; аргумент printf
+	movl	$0, %eax                             ; нет доп. аргументов
+	call	printf@PLT                           ; выводим "  |" — открываем правую часть
+	movl	$0, -20(%rbp)                        ; j = 0 — начинаем вывод символов
+	jmp	.L16                                 ; прыгаем к проверке цикла символов
+.L19:                                            ; обработка одного символа
+	movl	-36(%rbp), %edx                      ; берём i
+	movl	-20(%rbp), %eax                      ; берём j
+	addl	%edx, %eax                           ; i + j — индекс символа
+	cmpl	%eax, -40(%rbp)                      ; есть ли символ? (индекс < size?)
+	jle	.L17                                 ; нет — прыгаем к j++
+	movl	-36(%rbp), %edx                      ; берём i снова
+	movl	-20(%rbp), %eax                      ; берём j
+	addl	%edx, %eax                           ; i + j
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес символа
+	movzbl	(%rax), %eax                         ; читаем символ
+	cmpb	$31, %al                             ; символ <= 31? (невидимый — перенос строки и т.д.)
+	jbe	.L18                                 ; если да — прыгаем ставить точку
+	movl	-36(%rbp), %edx                      ; берём i снова
+	movl	-20(%rbp), %eax                      ; берём j
+	addl	%edx, %eax                           ; i + j
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес символа
+	movzbl	(%rax), %eax                         ; читаем символ снова
+	cmpb	$126, %al                            ; символ > 126? (тоже невидимый)
+	ja	.L18                                 ; если да — прыгаем ставить точку
+	movl	-36(%rbp), %edx                      ; берём i ещё раз
+	movl	-20(%rbp), %eax                      ; берём j
+	addl	%edx, %eax                           ; i + j
+	movslq	%eax, %rdx                           ; расширяем до 64 бит
+	movq	-8(%rbp), %rax                       ; берём адрес буфера
+	addq	%rdx, %rax                           ; адрес символа
+	movzbl	(%rax), %eax                         ; читаем символ (для вывода)
+	movzbl	%al, %eax                            ; расширяем до полного числа
+	movl	%eax, %edi                           ; аргумент putchar
+	call	putchar@PLT                          ; выводим символ как есть (он видимый, 32-126)
+	jmp	.L17                                 ; прыгаем к j++
+.L18:                                            ; сюда прыгаем для невидимых символов
+	movl	$46, %edi                            ; 46 — код точки "." в ASCII
+	call	putchar@PLT                          ; выводим точку вместо невидимого символа
+.L17:                                            ; сюда попадаем всегда
+	addl	$1, -20(%rbp)                        ; j++ — следующий символ
+.L16:                                            ; проверка условия цикла символов
+	cmpl	$15, -20(%rbp)                       ; j <= 15? (ещё не все 16 символов?)
+	jle	.L19                                 ; если да — обрабатываем следующий символ
+	leaq	.LC4(%rip), %rax                     ; загружаем "|"
+	movq	%rax, %rdi                           ; аргумент puts
+	call	puts@PLT                             ; выводим "|" и переходим на новую строку
+	addl	$16, -36(%rbp)                       ; i += 16 — следующий блок из 16 байт
+.L7:                                             ; проверка условия главного цикла
+	movl	-36(%rbp), %eax                      ; берём i
+	cmpl	-40(%rbp), %eax                      ; i < size? (остались ли ещё байты?)
+	jl	.L20                                 ; если да — выводим следующую строку дампа
+	movl	$28, -16(%rbp)                       ; bite = 28 — начинаем вывод итогового размера
+	jmp	.L21                                 ; прыгаем к проверке условия
+.L22:                                            ; выводим одну hex-цифру итогового размера
+	movl	-16(%rbp), %eax                      ; берём bite
+	movl	-40(%rbp), %edx                      ; берём size — итоговый размер
+	movl	%eax, %ecx                           ; bite в ecx — для команды сдвига
+	sarl	%cl, %edx                            ; сдвигаем size вправо на bite бит
+	movl	%edx, %eax                           ; копируем результат
+	andl	$15, %eax                            ; последние 4 бита — число 0-15
+	cltq                                         ; расширяем до 64 бит — индекс в алфавите
+	leaq	.LC0(%rip), %rdx                     ; загружаем "0123456789abcdef"
+	movzbl	(%rax,%rdx), %eax                    ; берём hex-символ по индексу
+	movsbl	%al, %eax                            ; расширяем для putchar
+	movl	%eax, %edi                           ; аргумент putchar
+	call	putchar@PLT                          ; выводим hex-цифру итогового размера
+	subl	$4, -16(%rbp)                        ; bite -= 4 — следующая цифра
+.L21:                                            ; проверка условия
+	cmpl	$0, -16(%rbp)                        ; bite >= 0? (ещё не все 8 цифр?)
+	jns	.L22                                 ; если да — выводим следующую цифру
+	movl	$10, %edi                            ; 10 — код переноса строки "\n" в ASCII
+	call	putchar@PLT                          ; выводим перенос строки после размера
+	movq	-8(%rbp), %rax                       ; берём адрес буфера str
+	movq	%rax, %rdi                           ; аргумент free
+	call	free@PLT                             ; освобождаем память — возвращаем системе
+	movl	$0, %eax                             ; код возврата 0 — программа завершилась нормально
+.L3:                                             ; сюда прыгаем при ошибке malloc
+	leave                                        ; восстанавливаем стек как до вызова main
+	.cfi_def_cfa 7, 8                            ; служебная — для отладчика
+	ret                                          ; возвращаем управление операционной системе
+	.cfi_endproc                                 ; служебная — конец описания функции
+.LFE6:                                           ; служебная метка конца функции
+	.size	main, .-main                         ; служебная — размер функции main
+	.ident	"GCC: (GNU) 15.2.1 20260209"         ; версия компилятора
+	.section	.note.GNU-stack,"",@progbits     ; пометка: стек не исполняемый (защита)

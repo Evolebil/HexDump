@@ -3,7 +3,7 @@
 
 int main() {
     int capacity = 1;
-    int size = 0;
+    int size = 0;//
     unsigned char *str = malloc(capacity * sizeof(unsigned char));
     int ch;
 

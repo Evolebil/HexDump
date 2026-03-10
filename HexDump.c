@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 int main() {
-    int capacity = 1;
-    int size = 0;//
+    int capacity = 1;//обьём занимающего памяти
+    int size = 0;//размер строки
     unsigned char *str = malloc(capacity * sizeof(unsigned char));
     int ch;
 
